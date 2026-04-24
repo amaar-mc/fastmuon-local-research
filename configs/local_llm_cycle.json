@@ -1,0 +1,115 @@
+{
+  "experiment_name": "local_llm_cycle",
+  "output_root": "results",
+  "device": "auto",
+  "seed": 0,
+  "data": {
+    "vocab_size": 256,
+    "block_size": 64,
+    "n_tokens": 200000,
+    "val_fraction": 0.1,
+    "mode": "algorithmic"
+  },
+  "model": {
+    "vocab_size": 256,
+    "block_size": 64,
+    "n_layer": 4,
+    "n_head": 4,
+    "n_embd": 128,
+    "dropout": 0.0,
+    "bias": true
+  },
+  "optimizer": {
+    "name": "cimuon",
+    "matrix_lr": 0.03,
+    "fallback_lr": 0.001,
+    "weight_decay": 0.01,
+    "momentum": 0.95,
+    "ns_steps": 5,
+    "rho_min": 0.05,
+    "rho_max": 0.95,
+    "beta_fast": 0.9,
+    "beta_slow": 0.99,
+    "coherence_gain": 6.0,
+    "coherence_midpoint": 0.2,
+    "anisotropy_gain": 3.0,
+    "anisotropy_midpoint": 0.15
+  },
+  "train": {
+    "batch_size": 24,
+    "max_steps": 500,
+    "eval_interval": 50,
+    "eval_iters": 8,
+    "log_interval": 10,
+    "grad_clip": 1.0,
+    "target_val_loss": 4.0
+  },
+  "sweep": {
+    "seeds": [0, 1, 2, 3, 4],
+    "optimizers": [
+      {
+        "name": "adamw",
+        "lr": 0.001,
+        "weight_decay": 0.01
+      },
+      {
+        "name": "muon",
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001,
+        "weight_decay": 0.01
+      },
+      {
+        "name": "cimuon",
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001,
+        "rho_min": 0.05,
+        "rho_max": 0.95
+      },
+      {
+        "name": "cimuon_coherence",
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001,
+        "rho_min": 0.05,
+        "rho_max": 0.95
+      },
+      {
+        "name": "cimuon_anisotropy",
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001,
+        "rho_min": 0.05,
+        "rho_max": 0.95
+      },
+      {
+        "name": "cimuon_fixed",
+        "fixed_rho": 0.0,
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001
+      },
+      {
+        "name": "cimuon_fixed",
+        "fixed_rho": 0.25,
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001
+      },
+      {
+        "name": "cimuon_fixed",
+        "fixed_rho": 0.5,
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001
+      },
+      {
+        "name": "cimuon_fixed",
+        "fixed_rho": 0.75,
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001
+      },
+      {
+        "name": "cimuon_fixed",
+        "fixed_rho": 1.0,
+        "matrix_lr": 0.03,
+        "fallback_lr": 0.001
+      }
+    ]
+  }
+}
+

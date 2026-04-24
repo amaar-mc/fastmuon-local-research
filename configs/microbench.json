@@ -1,0 +1,24 @@
+{
+  "experiment_name": "microbench",
+  "device": "auto",
+  "steps": 200,
+  "seeds": [0, 1, 2, 3, 4],
+  "optimizers": ["adamw", "muon", "cimuon", "cimuon_coherence", "cimuon_anisotropy"],
+  "problem": {
+    "dim": 64,
+    "rank": 8,
+    "condition": 1000.0,
+    "grad_noise_std": 0.001
+  },
+  "optimizer": {
+    "matrix_lr": 0.05,
+    "fallback_lr": 0.001,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "momentum": 0.95,
+    "ns_steps": 5,
+    "rho_min": 0.05,
+    "rho_max": 0.95
+  }
+}
+

@@ -1,0 +1,78 @@
+{
+  "experiment_name": "fast_muon_probe",
+  "output_root": "results",
+  "device": "auto",
+  "seed": 0,
+  "data": {
+    "vocab_size": 128,
+    "block_size": 32,
+    "n_tokens": 20000,
+    "val_fraction": 0.15,
+    "mode": "algorithmic"
+  },
+  "model": {
+    "vocab_size": 128,
+    "block_size": 32,
+    "n_layer": 2,
+    "n_head": 2,
+    "n_embd": 64,
+    "dropout": 0.0,
+    "bias": true
+  },
+  "optimizer": {
+    "name": "muon",
+    "matrix_lr": 0.02,
+    "fallback_lr": 0.001,
+    "weight_decay": 0.01,
+    "momentum": 0.95,
+    "ns_steps": 5,
+    "rho_min": 0.0,
+    "rho_max": 1.0
+  },
+  "train": {
+    "batch_size": 16,
+    "max_steps": 100,
+    "eval_interval": 25,
+    "eval_iters": 4,
+    "log_interval": 5,
+    "grad_clip": 1.0,
+    "target_val_loss": 4.3
+  },
+  "sweep": {
+    "seeds": [0, 1, 2],
+    "optimizers": [
+      {
+        "name": "adamw",
+        "lr": 0.001,
+        "weight_decay": 0.01
+      },
+      {
+        "name": "muon",
+        "matrix_lr": 0.02,
+        "fallback_lr": 0.001,
+        "ns_steps": 3
+      },
+      {
+        "name": "muon",
+        "matrix_lr": 0.02,
+        "fallback_lr": 0.001,
+        "ns_steps": 4
+      },
+      {
+        "name": "muon",
+        "matrix_lr": 0.02,
+        "fallback_lr": 0.001,
+        "ns_steps": 5
+      },
+      {
+        "name": "cached_pulse_muon",
+        "matrix_lr": 0.02,
+        "fallback_lr": 0.001,
+        "pulse_interval": 4,
+        "pulse_warmup_steps": 2,
+        "pulse_rho_threshold": 0.9
+      }
+    ]
+  }
+}
+

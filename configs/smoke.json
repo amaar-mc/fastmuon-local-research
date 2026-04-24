@@ -1,0 +1,42 @@
+{
+  "experiment_name": "smoke",
+  "output_root": "results",
+  "device": "auto",
+  "seed": 0,
+  "data": {
+    "vocab_size": 128,
+    "block_size": 32,
+    "n_tokens": 12000,
+    "val_fraction": 0.15,
+    "mode": "algorithmic"
+  },
+  "model": {
+    "vocab_size": 128,
+    "block_size": 32,
+    "n_layer": 2,
+    "n_head": 2,
+    "n_embd": 64,
+    "dropout": 0.0,
+    "bias": true
+  },
+  "optimizer": {
+    "name": "cimuon",
+    "matrix_lr": 0.04,
+    "fallback_lr": 0.001,
+    "weight_decay": 0.01,
+    "momentum": 0.95,
+    "ns_steps": 5,
+    "rho_min": 0.05,
+    "rho_max": 0.95
+  },
+  "train": {
+    "batch_size": 16,
+    "max_steps": 20,
+    "eval_interval": 10,
+    "eval_iters": 2,
+    "log_interval": 5,
+    "grad_clip": 1.0,
+    "target_val_loss": 4.5
+  }
+}
+
