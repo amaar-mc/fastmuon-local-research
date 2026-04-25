@@ -7,13 +7,13 @@ Date: 2026-04-24
 Muon's practical optimizer cost is dominated by repeated Newton-Schulz matrix multiplications on hidden 2D parameters. The standard implementation uses five iterations:
 
 $$
-\Delta W_t = -\eta\,\operatorname{NS}_5(M_t)
+\Delta W_t = -\eta\,\mathrm{NS}_5(M_t)
 $$
 
 This probe asks whether a lower-depth approximation,
 
 $$
-\Delta W_t = -\eta\,\operatorname{NS}_k(M_t), \quad k < 5,
+\Delta W_t = -\eta\,\mathrm{NS}_k(M_t), \quad k < 5,
 $$
 
 retains most of Muon's fixed-token training benefit.
@@ -80,4 +80,3 @@ k(t) =
 $$
 
 4. Measure wall-clock on CUDA, where matrix multiplication timing is more representative of the Muon deployment target.
-

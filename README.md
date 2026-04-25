@@ -17,10 +17,10 @@ M_t = \mu M_{t-1} + G_t
 $$
 
 $$
-\Delta W_t = -\eta\,\operatorname{NS}_k(M_t)
+\Delta W_t = -\eta\,\mathrm{NS}_k(M_t)
 $$
 
-where $\operatorname{NS}_k$ is $k$ steps of the Newton-Schulz polar-factor iteration. Standard Muon commonly uses $k=5$.
+where $\mathrm{NS}_k$ is $k$ steps of the Newton-Schulz polar-factor iteration. Standard Muon commonly uses $k=5$.
 
 The FastMuon hypothesis tested here is simple:
 
@@ -34,7 +34,7 @@ The repository also includes two exploratory gating variants:
 
 $$
 \rho_t =
-\operatorname{clip}\left(
+\mathrm{clip}\left(
 \sigma(a_c(c_t-b_c))\,
 \sigma(a_s(s_t-b_s)),
 \rho_{\min},
@@ -45,7 +45,7 @@ $$
 $$
 \Delta W_t =
 -\eta\,
-\operatorname{RMSNorm}\left((1-\rho_t)N_t + \rho_t O_t\right)
+\mathrm{RMSNorm}\left((1-\rho_t)N_t + \rho_t O_t\right)
 $$
 
 where $N_t$ is RMS-normalized momentum, $O_t$ is the Newton-Schulz orthogonalized direction, $c_t$ is fast/slow momentum coherence, and $s_t$ is matrix energy anisotropy. These variants were useful negative controls, but they are not the lead result.
@@ -137,4 +137,3 @@ python3 -m optim_lab.analysis.summarize_microbench results/microbench
 The result is intentionally scoped. It has not yet been validated on a real text corpus, longer schedules, larger models, CUDA GPUs, or distributed training. A publication-grade claim would need longer runs, stronger AdamW and Muon tuning, real-data replication, and confidence intervals over more seeds.
 
 The next serious experiment is a 500-step TinyGPT sweep over AdamW, Muon-NS3, Muon-NS4, and Muon-NS5, followed by the same comparison on a byte-level text corpus.
-
